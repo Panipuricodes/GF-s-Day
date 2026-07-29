@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Girlfriend's Day Sweetuuú ♥</title>
+    <!-- Romantic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Dancing+Script:wght@600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            width: 100vw;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #2d112c 0%, #150517 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: 'Montserrat', sans-serif;
+            padding: 40px 20px;
+            color: #ffffff;
+        }
+
+        /* Ambient Floating Canvas */
+        #heartCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Main Display Card Container */
+        .card-container {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(230, 92, 130, 0.2);
+            padding: 45px 35px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Top Glowing Heart Seal */
+        .heart-seal {
+            width: 68px;
+            height: 68px;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(255, 117, 140, 0.7);
+            margin-bottom: 20px;
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(255, 117, 140, 0.7); }
+            50% { transform: scale(1.06); box-shadow: 0 0 45px rgba(255, 117, 140, 0.9); }
+        }
+
+        .heart-seal svg {
+            width: 28px;
+            height: 28px;
+            fill: #ffffff;
+        }
+
+        /* Typography Styles */
+        .subtitle-top {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ff9eba;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .main-headline {
+            font-family: 'Dancing Script', cursive;
+            font-size: 46px;
+            color: #ffffff;
+            line-height: 1.2;
+            text-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            margin-bottom: 8px;
+        }
+
+        .sub-caption {
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* Organic Tree Display */
+        .tree-wrapper {
+            width: 100%;
+            height: 270px;
+            margin: 5px 0 20px;
+            position: relative;
+        }
+
+        .tree-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+        }
+
+        /* Trunk animation */
+        .tree-trunk {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .blossom-heart {
+            opacity: 0;
+            transform: scale(0);
+            transform-origin: center;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Active Tree Growing Class */
+        .tree-wrapper.grown .tree-trunk {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tree-wrapper.grown .blossom-heart {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Trigger Button */
+        .grow-btn {
+            background: linear-gradient(135deg, #e65c82 0%, #b8325c 100%);
+            border: none;
+            color: #ffffff;
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(230, 92, 130, 0.4);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .grow-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(230, 92, 130, 0.6);
+            background: linear-gradient(135deg, #ff6b93 0%, #c93a68 100%);
+        }
+
+        .grow-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Expanded Heartfelt Letter Container */
+        .letter-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+            line-height: 1.8;
+            font-size: 13.5px;
+            color: #f1e4eb;
+            font-weight: 300;
+        }
+
+        .letter-content p {
+            margin-bottom: 18px;
+            text-indent: 10px;
+        }
+
+        .letter-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .letter-salutation {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #ff9eba;
+            margin-bottom: 15px;
+            text-indent: 0 !important;
+        }
+
+        .letter-signoff {
+            font-family: 'Alex Brush', cursive;
+            font-size: 32px;
+            color: #ff758c;
+            text-align: right;
+            margin-top: 25px;
+        }
+
+        /* Audio Player Container */
+        .audio-card {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .audio-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            color: #ff9eba;
+            margin-bottom: 12px;
+        }
+
+        .audio-card audio {
+            width: 100%;
+            outline: none;
+            border-radius: 30px;
+            filter: drop-shadow(0 4px 10px rgba(230, 92, 130, 0.3));
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Heart Background Canvas -->
+    <canvas id="heartCanvas"></canvas>
+
+    <!-- Main Card Container -->
+    <div class="card-container">
+        
+        <!-- Top Seal -->
+        <div class="heart-seal">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+
+        <div class="subtitle-top">a note from my heart</div>
+        <h1 class="main-headline">Happy Girlfriend's Day<br>Sweetuú ♥</h1>
+        <div class="sub-caption">TO SOMEONE WORTH CELEBRATING</div>
+
+        <!-- Organic Tree with Detailed Branch Structure -->
+        <div class="tree-wrapper" id="treeWrapper">
+            <svg class="tree-svg" viewBox="0 0 320 260">
+                <defs>
+                    <linearGradient id="trunkGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stop-color="#4a1825" />
+                        <stop offset="50%" stop-color="#7a2e43" />
+                        <stop offset="100%" stop-color="#b84d6a" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Detailed Trunk & Extra Visible Branch Network -->
+                <g class="tree-trunk">
+                    <path d="M 130 260 C 145 230, 138 200, 142 170 C 146 140, 125 125, 105 110 C 90 99, 70 95, 55 90 C 50 88, 52 83, 58 85 C 75 90, 95 96, 112 108 C 122 115, 132 125, 138 110 C 145 92, 138 72, 130 52 C 128 47, 134 45, 137 50 C 147 70, 153 90, 150 112 C 158 98, 175 80, 198 68 C 215 59, 235 55, 252 50 C 256 49, 257 54, 253 57 C 235 63, 215 69, 198 80 C 182 90, 168 108, 160 128 C 152 150, 165 180, 158 210 C 153 230, 168 245, 175 260 Z" fill="url(#trunkGrad)" />
+                    <path d="M 112 108 C 100 95, 82 88, 68 82 C 65 81, 66 77, 70 78 C 85 83, 102 91, 115 102 Z" fill="url(#trunkGrad)" />
+                    <path d="M 85 88 C 70 75, 50 70, 35 68 C 32 67, 33 63, 37 64 C 53 68, 73 74, 88 85 Z" fill="url(#trunkGrad)" />
+                    <path d="M 95 100 C 80 110, 65 120, 50 125 C 47 126, 46 122, 49 120 C 63 115, 78 106, 92 96 Z" fill="url(#trunkGrad)" />
+                    <path d="M 68 82 C 60 95, 48 105, 38 110 C 35 111, 34 107, 37 105 C 46 100, 57 91, 65 80 Z" fill="url(#trunkGrad)" />
+                    <path d="M 138 110 C 145 98, 158 85, 168 75 C 171 72, 174 76, 171 78 C 161 88, 148 100, 141 112 Z" fill="url(#trunkGrad)" />
+                    <path d="M 133 68 C 122 55, 110 42, 98 35 C 95 33, 98 30, 101 32 C 112 38, 124 50, 136 64 Z" fill="url(#trunkGrad)" />
+                    <path d="M 148 85 C 158 70, 168 55, 175 40 C 177 37, 180 39, 178 42 C 171 56, 162 70, 151 84 Z" fill="url(#trunkGrad)" />
+                    <path d="M 198 80 C 212 72, 228 67, 242 63 C 245 62, 246 66, 242 68 C 228 73, 212 79, 198 88 Z" fill="url(#trunkGrad)" />
+                    <path d="M 222 70 C 240 60, 260 55, 280 52 C 283 51, 284 55, 280 57 C 262 61, 243 66, 225 75 Z" fill="url(#trunkGrad)" />
+                    <path d="M 210 88 C 228 98, 248 108, 265 112 C 268 113, 269 109, 266 107 C 250 103, 231 94, 214 84 Z" fill="url(#trunkGrad)" />
+                    <path d="M 242 63 C 252 75, 265 88, 275 95 C 278 97, 275 100, 272 98 C 263 92, 250 80, 240 68 Z" fill="url(#trunkGrad)" />
+                </g>
+
+                <!-- Canopy of Hearts -->
+                <g class="blossom-heart" style="transition-delay: 0.15s;"><path d="M 60 110 C 48 95, 30 102, 38 115 L 60 130 L 82 115 C 90 102, 72 95, 60 110 Z" fill="#7a1228" transform="scale(0.85) translate(15, 10)"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.2s;"><path d="M 260 105 C 248 90, 230 97, 238 110 L 260 125 L 282 110 C 290 97, 272 90, 260 105 Z" fill="#7a1228" transform="scale(0.85) translate(25, 15)"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.25s;"><path d="M 100 130 C 88 115, 70 122, 78 135 L 100 150 L 122 135 C 130 122, 112 115, 100 130 Z" fill="#991b38" transform="scale(0.9) translate(10, -5)"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.3s;"><path d="M 220 125 C 208 110, 190 117, 198 130 L 220 145 L 242 130 C 250 117, 232 110, 220 125 Z" fill="#991b38" transform="scale(0.9) translate(15, 0)"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.35s;"><path d="M 45 95 C 32 78, 12 86, 21 100 L 45 118 L 69 100 C 78 86, 58 78, 45 95 Z" fill="#b81d40"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.4s;"><path d="M 275 90 C 262 73, 242 81, 251 95 L 275 113 L 299 95 C 308 81, 288 73, 275 90 Z" fill="#b81d40"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.45s;"><path d="M 70 120 C 58 105, 40 112, 48 125 L 70 138 L 92 125 C 100 112, 82 105, 70 120 Z" fill="#d82b52"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.5s;"><path d="M 250 118 C 238 103, 220 110, 228 123 L 250 136 L 272 123 C 280 110, 262 103, 250 118 Z" fill="#d82b52"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.55s;"><path d="M 55 70 C 40 52, 18 62, 28 78 L 55 98 L 82 78 C 92 62, 70 52, 55 70 Z" fill="#e03e65"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.6s;"><path d="M 265 65 C 250 47, 228 57, 238 73 L 265 93 L 292 73 C 302 57, 280 47, 265 65 Z" fill="#e03e65"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.65s;"><path d="M 90 95 C 75 78, 55 86, 65 102 L 90 120 L 115 102 C 125 86, 105 78, 90 95 Z" fill="#e03e65"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.7s;"><path d="M 230 92 C 215 75, 195 83, 205 99 L 230 117 L 255 99 C 265 83, 245 75, 230 92 Z" fill="#e03e65"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.75s;"><path d="M 120 110 C 105 92, 85 100, 95 116 L 120 134 L 145 116 C 155 100, 135 92, 120 110 Z" fill="#f0547b"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.8s;"><path d="M 200 108 C 185 90, 165 98, 175 114 L 200 132 L 225 114 C 235 98, 215 90, 200 108 Z" fill="#f0547b"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.85s;"><path d="M 160 122 C 145 104, 125 112, 135 128 L 160 146 L 185 128 C 195 112, 175 104, 160 122 Z" fill="#ff6b93"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.9s;"><path d="M 160 92 C 142 72, 120 82, 132 100 L 160 120 L 188 100 C 200 82, 178 72, 160 92 Z" fill="#ff758c"/></g>
+                <g class="blossom-heart" style="transition-delay: 0.95s;"><path d="M 105 60 C 88 42, 65 52, 76 68 L 105 88 L 134 68 C 145 52, 122 42, 105 60 Z" fill="#ff6b93"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.0s;"><path d="M 215 58 C 198 40, 175 50, 186 66 L 215 86 L 244 66 C 255 50, 232 40, 215 58 Z" fill="#ff6b93"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.05s;"><path d="M 130 48 C 112 30, 90 40, 101 56 L 130 76 L 159 56 C 170 40, 148 30, 130 48 Z" fill="#ff85a2"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.1s;"><path d="M 190 46 C 172 28, 150 38, 161 54 L 190 74 L 219 54 C 230 38, 208 28, 190 46 Z" fill="#ff85a2"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.15s;"><path d="M 160 32 C 140 12, 115 22, 128 40 L 160 62 L 192 40 C 205 22, 180 12, 160 32 Z" fill="#d82b52"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.2s;"><path d="M 160 18 C 145 2, 125 10, 135 24 L 160 40 L 185 24 C 195 10, 175 2, 160 18 Z" fill="#ff758c"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.25s;"><path d="M 75 62 C 65 50, 50 56, 56 66 L 75 78 L 94 66 C 100 56, 85 50, 75 62 Z" fill="#ffffff"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.3s;"><path d="M 245 58 C 235 46, 220 52, 226 62 L 245 74 L 264 62 C 270 52, 255 46, 245 58 Z" fill="#ffe0e8"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.35s;"><path d="M 135 32 C 125 20, 110 26, 116 36 L 135 48 L 154 36 C 160 26, 145 20, 135 32 Z" fill="#ffffff"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.4s;"><path d="M 185 34 C 175 22, 160 28, 166 38 L 185 50 L 204 38 C 210 28, 195 22, 185 34 Z" fill="#ffa8bc"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.45s;"><path d="M 160 70 C 150 58, 135 64, 141 74 L 160 86 L 179 74 C 185 64, 170 58, 160 70 Z" fill="#ffffff"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.5s;"><path d="M 110 82 C 100 70, 85 76, 91 86 L 110 98 L 129 86 C 135 76, 120 70, 110 82 Z" fill="#ffe0e8"/></g>
+                <g class="blossom-heart" style="transition-delay: 1.55s;"><path d="M 210 80 C 200 68, 185 74, 191 84 L 210 96 L 229 84 C 235 74, 220 68, 210 80 Z" fill="#ffa8bc"/></g>
+            </svg>
+        </div>
+
+        <button class="grow-btn" id="growBtn">♥ Bloom Our Love Tree ♥</button>
+
+        <!-- Long, Deep Heartfelt Letter -->
+        <div class="letter-content">
+            <div class="letter-salutation">My Dearest Sweetuú,</div>
+            
+            <p>Today is Girlfriend’s Day Yayyy! having you in my life makes every single day feel worth celebrating. I just wanna tell you all the things that I carry in my heart for you every single day, even when life gets busy and noisy.</p>
+
+            <p>Honey, I need you to know how deeply, truly grateful I am to have you. You really are an angel to me.. you bring a kind of peace, warmth, and genuine brightness into my world that I never knew I was missing until you walked into it. Being with you has shown me what real happiness and love feels like, and there isn't a day that goes by where I don't feel immensely lucky to call you mine.</p>
+
+            <p>I am so incredibly proud of you—not just for all the amazing things you do, but simply for the beautiful person you are inside-out. Your heart, your strength, your kindness, your understanding, your forgiveness and the way you care so gently makes me look at you with endless admiration. Calling you my girlfriend is one of my greatest joys and highest honors.</p>
+
+            <p>Please never, ever forget how deeply worth loving you are. You are worth every bit of my affection, every ounce of attention, and every single special moment we share together. Every laugh, every quiet conversation, every dynamic we build—it is all precious to me. You mean everything to me sweetuuú, and my love for you grows stronger with every passing day.</p>
+
+            <p>You complete me, and I'll never forget everything you did for me baby.. I deeply apologise for every single sin I've made and promise you to keep trying to do better as a partner and give you the life you deserve. Thank you so much for always being patient with me, for always being there, for always being the best.</p>
+
+            <p>You are a blessing to me honey! I love you from the bottom of my heart and shall keep loving you till my last breath and even after.</p>
+
+            <p>Thank you for being the best girlfriend ever, my Sweetuu. I can never imagine a life without you. You really are my better half. It's crazy, but it's true.. there's nothing I won't do.. I'd risk it all for you ♥</p>
+
+            <p>Happy Girlfriend's Day to the most beautiful, charming, special, hot, caring, loving, understanding, forgiving, mesmerizing, cute, sexy, adorable, adimirable, deserving, smart, funny, attractive, sweet, supercalifragilisticexpialidocious girlfriend ever (my Sweetuu)</p>
+
+            <div class="letter-signoff">Forever Yours ♥ - Arjun</div>
+
+            <!-- Audio Player Section -->
+            <div class="audio-card">
+                <div class="audio-title">♫ A Special Song For My Girlfren ♫</div>
+                <audio controls>
+                    <source src="Risk_it_all.mp3.m4a.mp4" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    // Tree Animation Logic
+    const growBtn = document.getElementById('growBtn');
+    const treeWrapper = document.getElementById('treeWrapper');
+
+    growBtn.addEventListener('click', () => {
+        treeWrapper.classList.add('grown');
+        growBtn.style.opacity = '0';
+        growBtn.style.pointerEvents = 'none';
+        setTimeout(() => {
+            growBtn.style.display = 'none';
+        }, 300);
+    });
+
+    // Particle Background Physics
+    const canvas = document.getElementById('heartCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class HeartParticle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height + 20;
+            this.size = Math.random() * 10 + 6;
+            this.speedY = Math.random() * 1.2 + 0.4;
+            this.speedX = Math.sin(Math.random() * Math.PI) * 0.4;
+            this.opacity = Math.random() * 0.4 + 0.2;
+        }
+
+        update() {
+            this.y -= this.speedY;
+            this.x += this.speedX;
+            if (this.y < -20) this.reset();
+        }
+
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = '#ff758c';
+            ctx.beginPath();
+            const topCurveHeight = this.size * 0.3;
+            ctx.moveTo(this.x, this.y + topCurveHeight);
+            ctx.bezierCurveTo(this.x, this.y, this.x - this.size / 2, this.y, this.x - this.size / 2, this.y + topCurveHeight);
+            ctx.bezierCurveTo(this.x - this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x, this.y + this.size, this.x, this.y + this.size);
+            ctx.bezierCurveTo(this.x, this.y + this.size, this.x + this.size / 2, this.y + (this.size + topCurveHeight) / 2, this.x + this.size / 2, this.y + topCurveHeight);
+            ctx.bezierCurveTo(this.x + this.size / 2, this.y, this.x, this.y, this.x, this.y + topCurveHeight);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+
+    for (let i = 0; i < 30; i++) {
+        particles.push(new HeartParticle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
+
+</body>
+</html>
